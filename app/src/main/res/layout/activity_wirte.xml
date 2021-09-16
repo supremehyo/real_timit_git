@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".View.WirteActivity">
+
+        <ImageView
+            android:id="@+id/content_write_iv"
+            android:layout_margin="12dp"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+        </ImageView>
+        <EditText
+            android:id="@+id/content_write_et"
+            android:text="여기에 글을"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:layout_below="@+id/content_write_iv"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+        </EditText>
+
+        <!--
+        <com.ncorti.slidetoact.SlideToActView
+            android:layout_below="@+id/content_write_et"
+            android:id="@+id/example"
+            android:elevation="6dp"
+            app:animation_duration="250"
+            app:outer_color="@color/colorOrange"
+            app:inner_color="@color/bright_black"
+            app:area_margin="4dp"
+            app:border_radius="2dp"
+            app:text_size="12sp"
+            app:slider_height="80dp"
+            app:slider_locked="false"
+            app:text="밀어서 등록"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
+               -->
+        <com.ncorti.slidetoact.SlideToActView
+            android:id="@+id/post_slide"
+            android:layout_below="@+id/content_write_et"
+            app:outer_color="@color/colorOrange"
+            app:inner_color="@color/bright_black"
+            app:animation_duration="250"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            app:border_radius="28dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="밀어서 등록" />
+
+    </RelativeLayout>
+
+
+</layout>

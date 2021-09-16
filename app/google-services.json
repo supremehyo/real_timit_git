@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "570195520202",
+    "firebase_url": "https://helloar-43181-default-rtdb.firebaseio.com",
+    "project_id": "helloar-43181",
+    "storage_bucket": "helloar-43181.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570195520202:android:f171279cf989e2bf48a233",
+        "android_client_info": {
+          "package_name": "com.supremehyo.locationsns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570195520202-fj8hg6b8uc1ujvqvhisugig60ml6u777.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.supremehyo.locationsns",
+            "certificate_hash": "1456ab2a1929c7ef6aac435556e40fce42718c82"
+          }
+        },
+        {
+          "client_id": "570195520202-bahagrrq2n3gikob23fcsem2feubv2pg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJS_kEE81ePaP8QF_AwCYkDR1nKz0iAUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570195520202-bahagrrq2n3gikob23fcsem2feubv2pg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

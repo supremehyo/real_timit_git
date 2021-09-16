@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment">
+
+    <fragment android:id="@+id/homeFragment"
+        android:label="homeFragment"
+        android:name="com.supremehyo.locationsns.View.Fragment.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_contentEditActivity"
+            app:destination="@id/contentEditActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_alarmActivity"
+            app:destination="@id/alarmActivity" />
+    </fragment>
+
+    <fragment android:id="@+id/chattingFragment"
+        android:label="chattingFragment"
+        android:name="com.supremehyo.locationsns.View.Fragment.ChattingFragment"
+        tools:layout="@layout/fragment_read">
+    </fragment>
+
+    <fragment android:id="@+id/profileFragment"
+        android:label="profileFragment"
+        android:name="com.supremehyo.locationsns.View.Fragment.ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_profileEditActivity"
+            app:destination="@id/profileEditActivity" />
+    </fragment>
+
+    <activity android:id="@+id/contentEditActivity"
+        android:name="com.supremehyo.locationsns.View.ContentEditActivity"
+        tools:layout="@layout/activity_content_edit">
+    </activity>
+
+    <activity android:id="@+id/alarmActivity"
+        android:name="com.supremehyo.locationsns.View.AlarmActivity"
+        tools:layout="@layout/activity_alarm"></activity>
+
+    <activity android:id="@+id/profileEditActivity"
+        android:name="com.supremehyo.locationsns.View.UserProfileEditActivity"
+        tools:layout="@layout/activity_user_profile_edit">
+
+    </activity>
+
+</navigation>

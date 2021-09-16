@@ -1,0 +1,46 @@
+package com.supremehyo.locationsns.DI
+
+import com.supremehyo.locationsns.Model.*
+import com.supremehyo.locationsns.ViewModel.*
+import com.supremehyo.locationsns.ViewModel.FragmentViewModel.ProfileViewModel
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.ext.koin.viewModel
+
+import org.koin.dsl.module.module
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+
+var retrofitPart = module {
+
+
+
+// single 은 factory와 다르게 한번만 만든다. 싱글톤이랑 비슷함.*/
+
+}
+
+var modelPart = module {
+    //factory는 이 안에 들어있는 클래스를 공장처럼 찍어내는 역할을 한다.
+    //inject 할때마다 새로운 인스턴스를 가져온다.
+
+    single<MapModel>{ MapModelImpl(get()) }
+    single<AuthModel>{ AuthModelImpl() }
+    single<UserModel>{UserModelImpl()}
+
+
+}
+var viewModelPart = module {
+    viewModel { AuthViewModel(get()) }
+    viewModel { MapViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
+
+}
+
+var myDiModule = listOf(retrofitPart, modelPart, viewModelPart) // 이렇게 묶어주면 최상위 Application 클래스에서 의존성을 다 가져올수있다.
+//사용하면 좋은점은 외부에서 만들어서 넣어주기 떄문에 깔끔하고 쉽게 주입가능
+// 테스트에 용이해짐, 객체를 번거롭게 생성해주지 않아도 된다, 변수사용이 줄어든다
+// 클래스간 결합도를 낮춘다.
