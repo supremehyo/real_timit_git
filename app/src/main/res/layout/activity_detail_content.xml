@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -46,16 +47,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.032"></ImageView>
 
-    <ImageView
+
+
+    <Spinner
+        android:id="@+id/content_menu_bt"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/threedot"
+        android:background="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032"></ImageView>
+        app:layout_constraintVertical_bias="0.032">
+    </Spinner>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -122,10 +127,10 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_bold"
                     android:layout_toRightOf="@+id/user_profile_iv"
-                    android:text="티밋#199478503"></TextView>
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="티밋#199478503"
+                    android:textColor="@color/black"></TextView>
 
                 <TextView
                     android:id="@+id/user_address_tv"
@@ -160,9 +165,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:textColor="@color/black"
                     android:layout_toRightOf="@+id/content_datail_location_iv"
-                    android:text="올림픽공원 테니스장"></TextView>
+                    android:text="올림픽공원 테니스장"
+                    android:textColor="@color/black"></TextView>
 
             </RelativeLayout>
 
@@ -188,9 +193,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:textColor="@color/black"
                     android:layout_toRightOf="@+id/content_datail_count_iv"
-                    android:text="남자 1명 | 여자 1명"></TextView>
+                    android:text="남자 1명 | 여자 1명"
+                    android:textColor="@color/black"></TextView>
 
             </RelativeLayout>
 
@@ -215,9 +220,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:textColor="@color/black"
                     android:layout_toRightOf="@+id/content_datail_time_iv"
-                    android:text="2021.8.21(토) 오후 2:00 - 3:00"></TextView>
+                    android:text="2021.8.21(토) 오후 2:00 - 3:00"
+                    android:textColor="@color/black"></TextView>
             </RelativeLayout>
 
             <View
@@ -233,6 +238,7 @@
                 app:layout_constraintVertical_bias="0.05"></View>
 
             <TextView
+                android:id="@+id/event_des"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
                 android:textColor="@color/black"
@@ -283,13 +289,14 @@
                 android:layout_height="wrap_content">
             </TextView>
 
-            <com.google.android.gms.maps.MapView
+            <fragment
+                android:id="@+id/content_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="230dp">
-            </com.google.android.gms.maps.MapView>
+                android:layout_height="230dp"/>
 
         </LinearLayout>
 
@@ -297,3 +304,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

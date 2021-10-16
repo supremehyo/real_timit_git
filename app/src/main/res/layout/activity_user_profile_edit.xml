@@ -60,14 +60,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
             android:background="@color/white"
             android:hint="닉네임"
             android:nextFocusDown="@+id/location_et"
-            android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.011"
-            tools:layout_editor_absoluteX="12dp"></EditText>
+            android:padding="11dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view"></EditText>
 
 
         <View
@@ -75,31 +75,25 @@
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="464dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:background="#E3E3E3"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_age_et"
-            app:layout_constraintVertical_bias="0.017"></View>
+            app:layout_constraintTop_toBottomOf="@+id/age_spinner"></View>
 
-        <EditText
-            android:id="@+id/edit_gender_et"
+        <Spinner
+            android:id="@+id/gender_spinner"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="12dp"
             android:background="@color/white"
-            android:hint="성별(선택사항)"
             android:nextFocusDown="@+id/time_et"
             android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.112"
-            tools:layout_editor_absoluteX="16dp">
-
-            <requestFocus />
-        </EditText>
+            android:text="성별(선택사항)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_nickname_et"></Spinner>
 
 
         <View
@@ -107,16 +101,17 @@
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="528dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:background="#E3E3E3"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.119"></View>
+            app:layout_constraintTop_toBottomOf="@+id/gender_spinner"></View>
 
-        <EditText
-            android:id="@+id/edit_age_et"
+
+        <Spinner
+            android:id="@+id/age_spinner"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="12dp"
@@ -124,27 +119,22 @@
             android:hint="연령대(선택사항)"
             android:nextFocusDown="@+id/people_count__et"
             android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.219"
-            tools:layout_editor_absoluteX="12dp">
-
-            <requestFocus />
-        </EditText>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view3">></Spinner>
 
         <View
             android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:background="#E3E3E3"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.102"></View>
-
+            app:layout_constraintTop_toBottomOf="@+id/edit_nickname_et"></View>
 
         <EditText
             android:id="@+id/edit_address_et"
@@ -153,11 +143,10 @@
             android:layout_marginHorizontal="12dp"
             android:background="@color/white"
             android:hint="지역(선택사항)"
-            android:padding="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.326"
-            tools:layout_editor_absoluteX="12dp">
+            android:padding="11dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2">
 
             <requestFocus />
         </EditText>
@@ -166,37 +155,38 @@
             android:id="@+id/arrow_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="16dp"
             android:src="@drawable/right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_gender_et"
-            app:layout_constraintEnd_toEndOf="@+id/edit_gender_et"
-            app:layout_constraintTop_toTopOf="@+id/edit_gender_et"
-            app:layout_constraintVertical_bias="0.55"></ImageView>
+            app:layout_constraintBottom_toTopOf="@+id/view3"
+            app:layout_constraintEnd_toEndOf="@+id/gender_spinner"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="@+id/gender_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/edit_nickname_et"
+            app:layout_constraintVertical_bias="0.523"></ImageView>
 
 
         <ImageView
             android:id="@+id/arrow_iv2"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="16dp"
             android:src="@drawable/right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_age_et"
-            app:layout_constraintEnd_toEndOf="@+id/edit_age_et"
-            app:layout_constraintTop_toBottomOf="@+id/edit_gender_et"
-            app:layout_constraintVertical_bias="0.538"></ImageView>
+            app:layout_constraintBottom_toBottomOf="@+id/age_spinner"
+            app:layout_constraintEnd_toEndOf="@+id/age_spinner"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="@+id/age_spinner"
+            app:layout_constraintTop_toTopOf="@+id/age_spinner"
+            app:layout_constraintVertical_bias="0.55"></ImageView>
 
         <ImageView
             android:id="@+id/arrow_iv3"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginEnd="28dp"
             android:src="@drawable/right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_address_et"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_age_et"
-            app:layout_constraintVertical_bias="0.547"></ImageView>
-
-
+            app:layout_constraintBottom_toTopOf="@+id/view6"
+            app:layout_constraintEnd_toEndOf="@+id/edit_address_et"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintStart_toStartOf="@+id/edit_address_et"
+            app:layout_constraintTop_toTopOf="@+id/edit_address_et"
+            app:layout_constraintVertical_bias="0.475"></ImageView>
 
         <View
             android:id="@+id/view6"
@@ -216,18 +206,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="4dp"
             android:background="@color/white"
             android:gravity="top"
-            android:maxLength="100"
             android:hint="자기소개를 작성해주세요(선택사항, 최대100자)."
-            android:padding="4dp"
+            android:maxLength="100"
+            android:padding="11dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_address_et"
-            app:layout_constraintVertical_bias="0.005"></EditText>
+            app:layout_constraintTop_toBottomOf="@+id/view6"></EditText>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

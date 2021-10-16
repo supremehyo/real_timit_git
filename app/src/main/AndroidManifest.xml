@@ -36,7 +36,7 @@
             android:exported="true" />
         <activity android:name=".View.PersonCountActivity" />
         <activity android:name=".View.TimeActivity" />
-        <activity android:name=".View.ContentEditActivity" />
+        <activity android:name=".View.ContentCreateActivity" />
         <activity android:name=".View.SecondLoginActivity" />
         <activity
             android:name=".View.WirteActivity"

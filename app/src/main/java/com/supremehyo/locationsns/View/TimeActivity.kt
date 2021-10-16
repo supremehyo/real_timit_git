@@ -27,8 +27,24 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
     var local_day = 0
     var local_time = 0
     var local_minite = 0
-
     var start_end_flag : Boolean = false
+
+
+    var temp_start_year = ""
+    var temp_start_month = ""
+    var temp_start_day = ""
+    var temp_start_time = ""
+    var temp_start_minite = ""
+
+    var temp_end_year = ""
+    var temp_end_month = ""
+    var temp_end_day = ""
+    var temp_end_time = ""
+    var temp_end_minite = ""
+
+
+    var start_dateformat = ""
+    var end_dateformat = ""
 
     override fun initStartView() {
 
@@ -105,6 +121,8 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
         end_minute.text= local_minite.toString()+"분"
 
 
+        start_dateformat = local_year.toString()+"-"+local_month.toString()+"-"+local_day.toString()+local_time.toString()+":"+local_minite.toString()
+        end_dateformat = local_year.toString()+"-"+local_month.toString()+"-"+local_day.toString()+local_time.toString()+":"+local_minite.toString()
 
         //시작 영역
         start_time_ll.setOnClickListener {
@@ -120,8 +138,10 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
             override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
                 if(start_end_flag == false){
                     start_year.text = newVal.toString()+"년"
+                    temp_start_year = newVal.toString()
                 }else{
                     end_year.text = newVal.toString()+"년"
+                    temp_end_year = newVal.toString()
                 }
             }
         })
@@ -130,11 +150,13 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
             override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
                 if(start_end_flag == false){
                     start_month.text = newVal.toString()+"월"
+                    temp_start_month = newVal.toString()
                     calendar.set(start_year.text.toString().substring(0,start_year.text.toString().length-1).toInt() ,
                         start_month.text.toString().substring(0,start_month.text.toString().length-1).toInt(), 1)
                     day.maxValue = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
                 }else{
                     end_month.text = newVal.toString()+"월"
+                    temp_end_month = newVal.toString()
                 }
             }
         })
@@ -142,8 +164,10 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
             override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
                 if(start_end_flag == false){
                     start_day.text = newVal.toString()+"일"
+                    temp_start_day = newVal.toString()
                 }else{
                     end_day.text = newVal.toString()+"일"
+                    temp_end_day = newVal.toString()
                 }
             }
         })
@@ -151,8 +175,10 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
             override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
                 if(start_end_flag == false){
                     start_hour.text = newVal.toString()+"시"
+                    temp_start_time = newVal.toString()
                 }else{
                     end_hour.text = newVal.toString()+"시"
+                    temp_end_time = newVal.toString()
                 }
             }
         })
@@ -161,15 +187,20 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
             override fun onValueChange(picker: NumberPicker?, oldVal: Int, newVal: Int) {
                 if(start_end_flag == false){
                     start_minute.text = (newVal*5).toString()+"분"
+                    temp_start_minite = (newVal*5).toString()
                 }else{
                     end_minute.text = (newVal*5).toString()+"분"
+                    temp_end_minite = (newVal*5).toString()
                 }
             }
         })
 
         time_com.setOnClickListener {
-            var temp_start = start_year.text.toString()+"."+start_month.text.toString()+"."+start_day.text.toString()+"."+start_hour.text.toString()+"."+start_minute.text.toString()
-            var temp_end = end_year.text.toString()+"."+end_month.text.toString()+"."+end_day.text.toString()+"."+end_hour.text.toString()+"."+end_minute.text.toString()
+            var temp_start = start_year.text.toString()+" "+start_month.text.toString()+" "+start_day.text.toString()+" "+start_hour.text.toString()+" "+start_minute.text.toString()
+            var temp_end = end_year.text.toString()+" "+end_month.text.toString()+" "+end_day.text.toString()+" "+end_hour.text.toString()+" "+end_minute.text.toString()
+
+            start_dateformat = temp_start_year+"-"+temp_start_month+"-"+temp_start_day+temp_start_time+""
+
             RxEventBusHelper.return_Time(temp_start,temp_end)
             finish()
         }

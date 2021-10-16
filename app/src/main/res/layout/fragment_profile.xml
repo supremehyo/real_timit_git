@@ -63,7 +63,7 @@
             app:layout_constraintVertical_bias="0.139"></ImageView>
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/profile_nickname_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
@@ -74,7 +74,7 @@
             app:layout_constraintHorizontal_bias="0.054"
             app:layout_constraintStart_toEndOf="@+id/user_profile_iv"
             app:layout_constraintTop_toBottomOf="@+id/textView10"
-            app:layout_constraintVertical_bias="0.118"></TextView>
+            app:layout_constraintVertical_bias="0.118" />
 
         <TextView
             android:id="@+id/user_age_tv"
@@ -85,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.243"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/profile_nickname_tv"
             app:layout_constraintVertical_bias="0.0"></TextView>
 
         <TextView
@@ -97,7 +97,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.269"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/profile_nickname_tv"
             app:layout_constraintVertical_bias="0.097"></TextView>
 
         <TextView

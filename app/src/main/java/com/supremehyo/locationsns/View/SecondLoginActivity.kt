@@ -86,7 +86,7 @@ class SecondLoginActivity :  BaseKotlinActivity<ActivitySecondLoginBinding, Auth
         post_auth_text_bt.setOnClickListener {
             if((smsNumber_edit.text.length ==6) && (sms_number.toString() == smsNumber_edit.text.toString())){
                 //이때 토큰 요청해야함
-                viewModel.get_token(sha256_hash(origin_phone_number))
+                viewModel.get_token(origin_phone_number)
                 startActivity(Intent(application, MainActivity::class.java))
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout)
             }else{

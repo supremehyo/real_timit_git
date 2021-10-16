@@ -6,5 +6,7 @@ import io.reactivex.Single
 interface UserModel {
 
     fun getMyProfile() : Single<UserDTO>
+    fun editMyProfile(userDTO: UserDTO)
     fun signUp_user(userDTO: UserDTO)
+
 }

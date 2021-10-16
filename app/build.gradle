@@ -62,7 +62,7 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "com.google.android.material:material:1.1.0-alpha02"
 
-    //구글 지도
+    //구글 지도jitpack
     implementation 'com.google.android.libraries.places:places:2.4.0'
 
 // navigation
@@ -80,9 +80,9 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
     implementation "com.squareup.retrofit2:retrofit-mock:2.4.0"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-
+    implementation 'com.squareup.retrofit2:converter-scalars:2.5.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     // koin
     implementation 'org.koin:koin-androidx-scope:1.0.2'
     implementation 'org.koin:koin-androidx-viewmodel:1.0.2'

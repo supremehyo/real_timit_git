@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.supremehyo.locationsns.MyApplication
 import com.supremehyo.locationsns.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -62,14 +63,19 @@ class Splash : AppCompatActivity() {
 
     private inner class splashHandler : Runnable {
         override fun run() {
-            startActivity(
-                Intent(
-                    getApplication(),
-                    FirstLoginActivity::class.java
-                )
-            ) //로딩이 끝난 후, HomeActivity 이동
-            overridePendingTransition(R.anim.fadein, R.anim.fadeout)
-            this@Splash.finish() // 로딩페이지 Activity stack에서 제거
+            //엑세스 토큰이 있는지 체크하고 있다면
+            //일단 mainAcvitiy로 넘긴다.
+            //넘기고나서 유저 정보를 가져올때 토큰 문제가 있으면 알아서 재발급 할테지만
+            //리프레시 토큰도 만료되서 안가져와지면 그때는 main에서 앱을 나가게 하고 그때 access 토큰을 비워주면서 다시 로그인하게 만들어야함. 이런 플로우
+            if(MyApplication.prefs.getString("access", "") != ""){
+                startActivity(Intent(getApplication(), MainActivity::class.java)) //로딩이 끝난 후, HomeActivity 이동
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+                this@Splash.finish() // 로딩페이지 Activity stack에서 제거
+            }else{
+                startActivity(Intent(getApplication(), FirstLoginActivity::class.java)) //로딩이 끝난 후, HomeActivity 이동
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+                this@Splash.finish() // 로딩페이지 Activity stack에서 제거
+            }
         }
     }
 

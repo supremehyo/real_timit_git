@@ -17,5 +17,9 @@ class AuthModelImpl() : AuthModel{
         return  retrofit.auth_api.get_token(encoded_phone)
     }
 
+    override fun get_refreshToken(refresh: String): Single<AuthDTO> {
+        return retrofit.auth_api.get_refreshToken(refresh)
+    }
+
 
 }

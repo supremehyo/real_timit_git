@@ -6,7 +6,7 @@ object RxEventBusHelper {
 
     val mSubject = PublishSubject.create<String>()
     val timeSubject = PublishSubject.create<List<String>>()
-    val mapSubject = PublishSubject.create<String>()
+    val mapSubject = PublishSubject.create<List<String>>()
     val countSubject = PublishSubject.create<ArrayList<Int>>()
 
     fun sendEvent(str: String) {
@@ -23,7 +23,7 @@ object RxEventBusHelper {
     }
 
     //지도 주소 보내기
-    fun return_Map_address(address : String){
+    fun return_Map_address(address : List<String>){
         mapSubject.onNext(address)
     }
 

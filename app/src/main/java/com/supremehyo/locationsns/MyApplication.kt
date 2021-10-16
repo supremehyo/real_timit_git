@@ -11,7 +11,7 @@ class MyApplication : Application() {
 
     companion object date {
         var date : String =""
-       // var userDto : UserDTO = UserDTO("userId","userEmail")
+        lateinit var userDto : UserDTO
         lateinit var prefs: PreferenceUtil
     }
 

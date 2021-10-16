@@ -33,6 +33,7 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
     private var mMap: GoogleMap? = null
 
     var address : String = ""
+    var place_name : String = ""
 
     override fun initStartView() {
 
@@ -54,6 +55,7 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
             override fun onPlaceSelected(place: Place) {
                Log.e("select", "Place: ${place.name}, ${place.latLng} , ${place.address}")
                address = place.address.toString()
+                place_name = place.name.toString()
                 gomap(place.latLng!!, place.name!! ,"rd")
             }
             override fun onError(status: Status) {
@@ -78,7 +80,8 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
     override fun initAfterBinding() {
         //지도 완료 버튼
         map_complete_tv.setOnClickListener {
-            RxEventBusHelper.return_Map_address(address)
+            var tempList = listOf<String>(address, place_name)
+            RxEventBusHelper.return_Map_address(tempList)
             finish()
         }
     }

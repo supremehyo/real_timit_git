@@ -21,4 +21,5 @@ class ChattingFragment : Fragment() {
          return view
     }
 
+
 }

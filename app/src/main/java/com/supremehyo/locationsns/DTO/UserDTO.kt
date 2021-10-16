@@ -5,27 +5,29 @@ import kotlinx.serialization.Serializable
 
 data class UserDTO(
     @SerializedName("phone")
-    val phone : String,
+    var phone : String,
     @SerializedName("last_login")
-    val last_login : String,
+    var last_login : String,
     @SerializedName("nickname")
-    val nickname : String,
+    var nickname : String,
     @SerializedName("sex")
-    val sex : String,
+    var sex : String ,
     @SerializedName("age")
-    val age : Int,
+    var age : Int,
     @SerializedName("location1")
-    val location1 : String,
+    var location1 : String,
     @SerializedName("location2")
-    val location2 : String,
+    var location2 : String,
     @SerializedName("profile_photo")
-    val profile_photo : String,
+    var profile_photo : String,
     @SerializedName("notification_pref")
-    val notification_pref : Boolean,
+    var notification_pref : Boolean,
     @SerializedName("auto_apply")
-    val auto_apply : Boolean,
+    var auto_apply : Boolean,
     @SerializedName("is_active")
-    val is_active : Boolean,
+    var is_active : Boolean,
     @SerializedName("is_admin")
-    val is_admin : Boolean
+    var is_admin : Boolean,
+    @SerializedName("intro")
+    var intro : String
 )

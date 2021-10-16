@@ -22,11 +22,23 @@
         <entry key="..\:/LocationSNS/app/src/main/res/layout/view_item_layout.xml" value="0.19114583333333332" />
         <entry key="..\:/LocationSNS/app/src/main/res/menu/tabmenu.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/Kade/Documents/GitHub/timit/timit/app/src/main/res/layout/activity_time.xml" value="0.6328125" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.2375" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/drawable/round_white_100.xml" value="0.253125" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/drawable/searchview_background.xml" value="0.253125" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_content_edit.xml" value="0.19882246376811594" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_detail_content.xml" value="0.33" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_map.xml" value="0.2171875" />
         <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_second_login.xml" value="0.1656534954407295" />
-        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_user_profile_edit.xml" value="0.36614583333333334" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/activity_user_profile_edit.xml" value="0.33" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/content_main.xml" value="0.15715579710144928" />
         <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/dialog_datepicker.xml" value="0.1656534954407295" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/fragment_read.xml" value="0.1656534954407295" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/fragment_sample.xml" value="0.2966485507246377" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/home_item_layout.xml" value="0.33" />
+        <entry key="..\:/androidProject/realtimit/app/src/main/res/layout/item_loading.xml" value="0.190625" />
         <entry key="..\:/timit/timit/app/src/main/res/drawable/round_white_100.xml" value="0.31666666666666665" />
         <entry key="..\:/timit/timit/app/src/main/res/layout/activity_alarm.xml" value="0.25" />
         <entry key="..\:/timit/timit/app/src/main/res/layout/activity_content_edit.xml" value="0.33" />

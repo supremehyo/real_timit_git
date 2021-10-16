@@ -2,6 +2,7 @@ package com.supremehyo.locationsns.DI
 
 import com.supremehyo.locationsns.Model.*
 import com.supremehyo.locationsns.ViewModel.*
+import com.supremehyo.locationsns.ViewModel.FragmentViewModel.HomeViewModel
 import com.supremehyo.locationsns.ViewModel.FragmentViewModel.ProfileViewModel
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -30,13 +31,18 @@ var modelPart = module {
     single<MapModel>{ MapModelImpl(get()) }
     single<AuthModel>{ AuthModelImpl() }
     single<UserModel>{UserModelImpl()}
-
+    single<UserProfileEditModel>{UserProfileEditModelImpl()}
+    single<HomeModel>{HomeModelImpl()}
+    single<ContentModel>{ContentModelImpl()}
 
 }
 var viewModelPart = module {
     viewModel { AuthViewModel(get()) }
     viewModel { MapViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
+    viewModel { UserProfileEditViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
+    viewModel { ContentViewModel(get()) }
 
 }
 

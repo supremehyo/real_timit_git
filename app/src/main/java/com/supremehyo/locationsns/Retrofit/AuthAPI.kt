@@ -2,6 +2,7 @@ package com.supremehyo.locationsns.Retrofit
 
 import com.supremehyo.locationsns.DTO.AuthDTO
 import io.reactivex.Single
+import okhttp3.Call
 import okhttp3.ResponseBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -19,6 +20,12 @@ interface AuthAPI {
     @POST("api/token/") // 인증번호 요청
     fun get_token(
         @Field("phone")phone: String
+    ): Single<AuthDTO>
+
+    @FormUrlEncoded
+    @POST("api/token/refresh/") // 인증번호 요청
+    fun get_refreshToken(
+        @Field("refresh")refresh: String
     ): Single<AuthDTO>
 
 
