@@ -2,6 +2,7 @@ package com.supremehyo.locationsns.View.Fragment
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -17,6 +18,9 @@ import com.supremehyo.locationsns.Adapter.ContentRecyclerAdapter
 import com.supremehyo.locationsns.Base.BaseFragment
 import com.supremehyo.locationsns.DTO.EventDTO
 import com.supremehyo.locationsns.R
+import com.supremehyo.locationsns.View.AlarmActivity
+import com.supremehyo.locationsns.View.ContentCreateActivity
+import com.supremehyo.locationsns.View.TimeActivity
 import com.supremehyo.locationsns.ViewModel.FragmentViewModel.HomeViewModel
 import com.supremehyo.locationsns.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -45,7 +49,6 @@ class HomeFragment :  BaseFragment<FragmentHomeBinding, HomeViewModel>(){
          localCategory.add("경기")
 
         var arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),R.layout.spinner_text , localCategory)
-
         spinner.adapter = arrayAdapter
 
         val LayoutManager = LinearLayoutManager(requireContext())
@@ -103,11 +106,13 @@ class HomeFragment :  BaseFragment<FragmentHomeBinding, HomeViewModel>(){
         
         
         home_add_bt.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_contentEditActivity)
+            startActivity(Intent(activity, ContentCreateActivity::class.java))
+            //findNavController().navigate(R.id.action_homeFragment_to_contentEditActivity)
         }
 
         alarm_iv.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_alarmActivity)
+            startActivity(Intent(activity, AlarmActivity::class.java))
+            //findNavController().navigate(R.id.action_homeFragment_to_alarmActivity)
         }
 
         //스와이프 해서 새로고침

@@ -2,6 +2,7 @@ package com.supremehyo.locationsns.Retrofit
 
 import com.google.gson.GsonBuilder
 import com.supremehyo.locationsns.MyApplication
+import com.supremehyo.locationsns.Retrofit7.KakaoAPI
 import com.supremehyo.locationsns.Util.AuthenticationInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -15,6 +16,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object RetrofitClass {
     private var instance: Retrofit? = null
     private var instance2: Retrofit? = null
+    private var instance3: Retrofit? = null
     private val gson = GsonBuilder().setLenient().create()
 
     // 서버 주소
@@ -51,6 +53,18 @@ object RetrofitClass {
         return instance2!!
     }
 
+    fun kakao_getInstance(): Retrofit {
+
+        if (instance3 == null) {
+            instance3 = Retrofit.Builder()
+                .baseUrl("https://dapi.kakao.com/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+        return instance3!!
+    }
+
     private val _auth_api = non_token_getInstance().create(AuthAPI::class.java)
     val auth_api
         get() = _auth_api
@@ -62,4 +76,8 @@ object RetrofitClass {
     private val _evnet_api = getInstance().create(EventAPI::class.java)
     val evnet_api
         get() = _evnet_api
+
+    private val _kakao_api = kakao_getInstance().create(KakaoAPI::class.java)
+    val kakao_api
+        get() = _kakao_api
 }

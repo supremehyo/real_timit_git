@@ -17,6 +17,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         prefs = PreferenceUtil(applicationContext)
         startKoin(applicationContext, myDiModule)
         //이런식으로 최상위에서 myDiModule 을 넣어서 주입해줌.

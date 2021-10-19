@@ -68,7 +68,6 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
         age_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 edit_age =  parent!!.getItemAtPosition(position).toString()
-                //edit_gender_et.setText(parent!!.getItemAtPosition(position).toString())
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -81,8 +80,6 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
         edit_address_et.setOnClickListener {
 
         }
-
-
 
         //유저 프로필 수정 완료
         profile_edit_complete_tv.setOnClickListener {

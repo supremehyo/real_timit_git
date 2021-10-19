@@ -20,6 +20,12 @@ import com.supremehyo.locationsns.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.android.ext.android.inject
+import android.content.pm.PackageManager
+
+import android.content.pm.PackageInfo
+import android.util.Base64
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class MainActivity :  BaseKotlinActivity<ActivityMainBinding, MainViewModel>(){
@@ -36,7 +42,7 @@ class MainActivity :  BaseKotlinActivity<ActivityMainBinding, MainViewModel>(){
 
 
     override fun initStartView() {
-
+        getAppKeyHash()
         fragmentManager.beginTransaction().apply {
             add(R.id.container, profileFragment, "").hide(profileFragment)
             add(R.id.container, chattingFragment, "").hide(chattingFragment)
@@ -87,5 +93,21 @@ class MainActivity :  BaseKotlinActivity<ActivityMainBinding, MainViewModel>(){
         }
     }
 
-
+    //해시 키 값 구하기
+    private fun getAppKeyHash() {
+        try {
+            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                var md: MessageDigest
+                md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val something: String = String(Base64.encode(md.digest(), 0))
+                Log.e("Hash key", something)
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            Log.e("name not found", e.toString())
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        }
+    }
 }

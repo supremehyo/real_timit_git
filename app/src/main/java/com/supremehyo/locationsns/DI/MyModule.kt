@@ -28,7 +28,7 @@ var modelPart = module {
     //factory는 이 안에 들어있는 클래스를 공장처럼 찍어내는 역할을 한다.
     //inject 할때마다 새로운 인스턴스를 가져온다.
 
-    single<MapModel>{ MapModelImpl(get()) }
+    single<MapModel>{ MapModelImpl() }
     single<AuthModel>{ AuthModelImpl() }
     single<UserModel>{UserModelImpl()}
     single<UserProfileEditModel>{UserProfileEditModelImpl()}
