@@ -25,7 +25,6 @@ class HomeViewModel(private val model : HomeModel) : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 it.run {
-                    Log.d("유저프로필", "유저프로필 : ${it}")
                     _eventListLiveData.postValue(it)
                 }
             }, {

@@ -57,14 +57,15 @@ class MainActivity :  BaseKotlinActivity<ActivityMainBinding, MainViewModel>(){
     }
 
     override fun initDataBinding() {
+        /*
         profile_viewModel.myProfileLiveData.observe(this, Observer {
             userDto = it
             Log.v("메인", it.age.toString())
-        })
+        })*/
     }
 
     override fun initAfterBinding() {
-        profile_viewModel.getMyProfile()
+       // profile_viewModel.getMyProfile()
     }
 
     private fun initListeners() {

@@ -26,6 +26,9 @@
         android:theme="@style/AppTheme.NoTitleBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.UserProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".View.UserAddressActivity"
             android:exported="true"
             android:label="@string/title_activity_user_address"

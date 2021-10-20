@@ -1,5 +1,6 @@
 package com.supremehyo.locationsns.View
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -79,11 +81,10 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
         Places.initialize(applicationContext, getString(R.string.google_map_token))
         // Create a new PlacesClient instance
         val placesClient = Places.createClient(this)
-        //지도
+        //............................................................. 여기를 카카오 지도로 바꿔야할듯
+        // 아마 카카오지도는 이름으로 검색하는게 있어서 이름으로 검색하고 그 좌표를 가져와서 마커 찍으면 될거같음.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.content_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
-
         //처음에 켜질때 이렇게 하는데 수정으로 갔다가 다시 돌아올때는 서버에 요청해서 새로 값 갱신해야하는게 맞는거 같음.
         // onResume 에다가 처리 할 것
     }
@@ -150,6 +151,14 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
         //닉네임 요청
         Log.v("hosaaa" ,event.host!! )
         viewModel.get_content_host_nickname(event.host!!)
+
+        user_nickname_tv.setOnClickListener {
+            val intent = Intent(application, UserProfileActivity::class.java)
+            intent.putExtra("user_id", user_nickname_tv.text)
+            intent.putExtra("phone_number" , event.host.toString())
+            startActivity(intent)
+
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {

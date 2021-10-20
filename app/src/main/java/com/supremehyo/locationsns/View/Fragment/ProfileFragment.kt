@@ -1,5 +1,7 @@
 package com.supremehyo.locationsns.View.Fragment
 
+import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +15,10 @@ import com.bumptech.glide.Glide
 import com.supremehyo.locationsns.Adapter.ContentRecyclerAdapter
 import com.supremehyo.locationsns.Base.BaseFragment
 import com.supremehyo.locationsns.DTO.ContentDTO
+import com.supremehyo.locationsns.DTO.EventDTO
+import com.supremehyo.locationsns.DTO.EventListResultDTO
 import com.supremehyo.locationsns.MyApplication
+import com.supremehyo.locationsns.MyApplication.date.userDto
 import com.supremehyo.locationsns.R
 import com.supremehyo.locationsns.View.MainActivity
 import com.supremehyo.locationsns.View.UserProfileEditActivity
@@ -21,8 +26,21 @@ import com.supremehyo.locationsns.ViewModel.FragmentViewModel.HomeViewModel
 import com.supremehyo.locationsns.ViewModel.FragmentViewModel.ProfileViewModel
 import com.supremehyo.locationsns.ViewModel.MainViewModel
 import com.supremehyo.locationsns.databinding.FragmentProfileBinding
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.profile_nickname_tv
+import kotlinx.android.synthetic.main.fragment_profile.user_address_tv
+import kotlinx.android.synthetic.main.fragment_profile.user_age_tv
+import kotlinx.android.synthetic.main.fragment_profile.user_content_count_tv
+import kotlinx.android.synthetic.main.fragment_profile.user_content_recycler
+import kotlinx.android.synthetic.main.fragment_profile.user_profile_des_tv
 import kotlinx.android.synthetic.main.fragment_read.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>() {
@@ -30,18 +48,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>(
     override val layoutResourceId: Int
         get() = R.layout.fragment_profile
     override val viewModel: ProfileViewModel by inject() // Koin 으로 의존성 주입
+    lateinit var eventListResultDTO : EventListResultDTO
+    lateinit var contentListAdapter : ContentRecyclerAdapter
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        contentListAdapter  = ContentRecyclerAdapter(context) // 값은 제대로 오는데 리사이클러뷰 어뎁터를 이거에 맞게 새로 만들어야함
+        contentListAdapter.setHasStableIds(true)
+    }
 
 
 
     override fun initStartView() {
         //일단 여기서 userDTO 에 있는 값들을 미리 넣어놓고나서 밑에서 rx로 처리하도록 하면 될듯
-        viewModel.getMyProfile()
+      //  viewModel.getMyProfile()
     }
 
     override fun initDataBinding() {
         viewModel.myProfileLiveData.observe(this, Observer {
             MyApplication.userDto = it
-            
             profile_nickname_tv.text = it.nickname
             Glide.with(requireContext()).load(it.profile_photo).error(R.drawable.profile_outline).circleCrop().into(user_profile_iv)
             convert_sexAndAge(it.age , it.sex)
@@ -51,16 +77,32 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>(
             }else{
                 user_profile_des_tv.text  = it.intro
             }
-            Log.v("sdfsdf" , it.nickname)
+         
         })
+
+        viewModel.usereventListLiveData.observe(this , Observer {
+            eventListResultDTO = it
+            user_content_count_tv.text = it.count.toString() // 총 몇개인지 적용
+            var list : ArrayList<EventDTO> = ArrayList<EventDTO>() // 이벤트 내용들 불러오기
+            list.addAll(it.results) // list 에 넣어주고
+            contentListAdapter.setContentList(list) // 어뎁터에 삽입
+            user_content_recycler.adapter =  contentListAdapter // 어뎁터 연결
+            contentListAdapter.notifyDataSetChanged() // 변경사항 알림
+        })
+
+        viewModel.myProfileLiveData.observe(this, Observer {
+            userDto = it
+            viewModel.get_user_writeEvnetList(userDto.phone , 1)
+        })
+
     }
 
     override fun initAfterBinding() {
         //프로필 수정을 눌렀을 때
         user_profile_edit_bt.setOnClickListener {
             startActivity(Intent(context , UserProfileEditActivity::class.java))
-          //  findNavController().navigate(R.id.action_profileFragment_to_profileEditActivity)
         }
+        viewModel.getMyProfile()
     }
 
 

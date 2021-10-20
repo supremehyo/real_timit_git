@@ -1,5 +1,6 @@
 package com.supremehyo.locationsns.Retrofit
 
+import com.supremehyo.locationsns.DTO.EventListResultDTO
 import com.supremehyo.locationsns.DTO.UserDTO
 import io.reactivex.Single
 import okhttp3.ResponseBody
@@ -38,5 +39,19 @@ interface UserAPI {
     fun get_content_host_nickname(
         @Path("user_id") user_id  : String
     ) : Single<UserDTO>
+
+
+    @GET("api/user/{user_id}/events/") //로그인
+    fun get_user_writeEvnetList(
+        @Path("user_id") user_id : String,
+        @Query("page") page : Int
+    ):Single<EventListResultDTO>
+
+    @FormUrlEncoded
+    @GET("api//user/{phone}/") //로그인
+    fun get_userData(
+        @Path("phone") phone : String
+    ):Single<UserDTO>
+
 
 }

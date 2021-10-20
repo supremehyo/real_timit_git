@@ -55,7 +55,8 @@ class UserAddressActivity : AppCompatActivity() {
                 request?.grant(request.resources)
             }
         }
-       // wv_search_address.loadUrl("http://123.254.240.66")
+        wv_search_address.getSettings().setDomStorageEnabled(true);
+        wv_search_address.loadUrl("http://54.180.138.77/static/client/daum_address.html")
     }
 
 

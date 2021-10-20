@@ -54,7 +54,6 @@ class AuthViewModel(private val model : AuthModel): BaseViewModel() {
                     MyApplication.prefs.setString("access", it.access)
                     Log.v("zzzzzz" , it.access)
                     MyApplication.prefs.setString("refresh", it.refresh)
-                    Log.v("zzzzzz2" , it.refresh)
                 }
             }, {
                 Log.d("스토어리스트", "response error, message : ${it.message}")

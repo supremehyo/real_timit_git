@@ -91,9 +91,8 @@ class HomeFragment :  BaseFragment<FragmentHomeBinding, HomeViewModel>(){
                 home_recyclerView.adapter =  contentListAdapter
                 contentListAdapter.notifyDataSetChanged()
                 swipeRefreshLayout.isRefreshing = false
-            }else{
-                home_emptyTv.visibility = View.VISIBLE
-                home_recyclerView.visibility = View.GONE
+            }else if(it.results.isEmpty()){
+                Toast.makeText(context, "더 이상 글이 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
 
             }
         })

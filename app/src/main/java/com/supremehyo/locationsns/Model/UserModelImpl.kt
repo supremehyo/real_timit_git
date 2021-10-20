@@ -1,6 +1,8 @@
 package com.supremehyo.locationsns.Model
 
 import android.util.Log
+import com.supremehyo.locationsns.DTO.EventDTO
+import com.supremehyo.locationsns.DTO.EventListResultDTO
 import com.supremehyo.locationsns.DTO.UserDTO
 import com.supremehyo.locationsns.MyApplication
 import com.supremehyo.locationsns.Retrofit.RetrofitClass
@@ -12,7 +14,6 @@ class UserModelImpl() : UserModel {
     val retrofit : RetrofitClass = RetrofitClass
 
     override fun getMyProfile()  : Single<UserDTO>{
-        Log.v("zzzzzz2" , MyApplication.prefs.getString("access", ""))
        return  retrofit.user_api.getMyProfile()
     }
 
@@ -22,6 +23,14 @@ class UserModelImpl() : UserModel {
 
     override fun signUp_user(userDTO: UserDTO) {
         //service.signUp_user(userDTO.userId , userDTO.userEmail)
+    }
+
+    override fun get_user_writeEvnetList(user_id: String, page: Int) : Single<EventListResultDTO> {
+        return  retrofit.user_api.get_user_writeEvnetList(user_id , page)
+    }
+
+    override fun get_userData(phone_number: String): Single<UserDTO> {
+        return  retrofit.user_api.get_userData(phone_number)
     }
 
 
