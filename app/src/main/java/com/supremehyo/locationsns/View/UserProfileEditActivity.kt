@@ -1,6 +1,7 @@
 package com.supremehyo.locationsns.View
 
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -78,8 +79,11 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
 
         //지역 클릭
         edit_address_et.setOnClickListener {
-
+            var intent = Intent(this, UserAddressActivity::class.java)
+            startActivityForResult(intent, 1)
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout)
         }
+
 
         //유저 프로필 수정 완료
         profile_edit_complete_tv.setOnClickListener {
@@ -124,4 +128,10 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val sendText: String = data?.extras?.getString("data").toString()
+        edit_address_et.setText(sendText)
+
+    }
 }

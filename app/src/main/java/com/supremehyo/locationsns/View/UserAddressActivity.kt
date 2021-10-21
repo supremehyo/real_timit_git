@@ -16,8 +16,20 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.supremehyo.locationsns.R
 import kotlinx.android.synthetic.main.activity_user_address.*
-
 class UserAddressActivity : AppCompatActivity() {
+
+
+    inner class MyJavaScriptInterface {
+        @JavascriptInterface @SuppressWarnings("unused")
+        fun  processDATA( data :String) {
+            var extra =  Bundle()
+            var intent = Intent()
+            intent.putExtra("data", data);
+            setResult(RESULT_OK, intent);
+            finish()
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +53,7 @@ class UserAddressActivity : AppCompatActivity() {
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 web_progress.setVisibility(View.GONE);
+                wv_search_address.loadUrl("javascript:sample2_execDaumPostcode();");
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -55,23 +68,12 @@ class UserAddressActivity : AppCompatActivity() {
                 request?.grant(request.resources)
             }
         }
-        wv_search_address.getSettings().setDomStorageEnabled(true);
+
         wv_search_address.loadUrl("http://54.180.138.77/static/client/daum_address.html")
     }
 
 
 
-    inner class MyJavaScriptInterface {
-        @JavascriptInterface @SuppressWarnings("unused")
-        fun  processDATA( data :String) {
-            var extra =  Bundle()
-            var intent = Intent()
-            extra.putString("data", data);
-            intent.putExtras(extra);
-            setResult(RESULT_OK, intent);
-            finish()
-        }
-    }
 
 
 }

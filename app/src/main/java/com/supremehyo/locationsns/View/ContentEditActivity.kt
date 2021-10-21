@@ -34,7 +34,7 @@ class ContentEditActivity : BaseKotlinActivity<ActivityContentEditBinding , Cont
 
         RxEventBusHelper.mapSubject
             .subscribe{
-                location_et.setText(it)
+                location_et.setText(it.get(0)+" "+it.get(1))
             }
 
         RxEventBusHelper.timeSubject
