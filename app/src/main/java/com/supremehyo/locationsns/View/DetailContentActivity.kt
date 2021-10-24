@@ -1,6 +1,8 @@
 package com.supremehyo.locationsns.View
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -91,7 +93,12 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
 
     override fun initDataBinding() {
         viewModel.NicknameLiveData.observe(this, Observer {
-            user_nickname_tv.text = it // 이게 정상적으로 가져와
+            user_nickname_tv.text = it.nickname // 이게 정상적으로 가져와
+            if(it.location1!=null && it.location2 != null){
+                user_address_tv.text = it.location1+" "+it.location2
+            }else{
+                user_address_tv.text = ""
+            }
         })
 
     }
@@ -159,6 +166,21 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
             startActivity(intent)
 
         }
+
+        map_connect_iv.setOnClickListener {
+            val location: Uri =
+                Uri.parse("geo:0.0?q=${event.location}")
+            // Or map point based on latitude/longitude
+            // Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
+            // Or map point based on latitude/longitude
+            // Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
+            val mapIntent = Intent(Intent.ACTION_VIEW, location)
+            if (mapIntent.resolveActivity(packageManager) != null) {
+                startActivity(mapIntent)
+            } else {
+                Log.d("Error", "지도 앱이 없습니다 ")
+            }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -186,5 +208,7 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
 
         mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 10F))
     }
+
+
 
 }

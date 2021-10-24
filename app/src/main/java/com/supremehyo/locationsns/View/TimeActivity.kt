@@ -57,7 +57,7 @@ class TimeActivity : BaseKotlinActivity<ActivityTimeBinding, MainViewModel>() {
 
         local_year = calendar.get(Calendar.YEAR)
         local_month = calendar.get(Calendar.MONTH)+1
-        local_day = calendar.get(Calendar.DATE)
+        local_day = calendar.get(Calendar.DAY_OF_MONTH)
         local_time = calendar.get(Calendar.HOUR_OF_DAY)
         local_minite = calendar.get(Calendar.MINUTE)
 

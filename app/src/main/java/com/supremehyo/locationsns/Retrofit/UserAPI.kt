@@ -47,7 +47,6 @@ interface UserAPI {
         @Query("page") page : Int
     ):Single<EventListResultDTO>
 
-    @FormUrlEncoded
     @GET("api//user/{phone}/") //로그인
     fun get_userData(
         @Path("phone") phone : String

@@ -131,6 +131,7 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val sendText: String = data?.extras?.getString("data").toString()
+        //여기서 주소 파싱해야함.
         edit_address_et.setText(sendText)
 
     }

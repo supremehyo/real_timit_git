@@ -58,10 +58,6 @@ class ProfileViewModel(private val model : UserModel) : BaseViewModel(){
     }
 
 
-
-
-
-
     fun get_userData(phone_number : String){
         addDisposable(model.get_userData(phone_number)
             .subscribeOn(Schedulers.io())

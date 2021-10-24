@@ -1,5 +1,6 @@
 package com.supremehyo.locationsns.Model
 
+import com.supremehyo.locationsns.DTO.AccressTokenDTO
 import com.supremehyo.locationsns.DTO.AuthDTO
 import com.supremehyo.locationsns.Retrofit.RetrofitClass
 import io.reactivex.Single
@@ -17,7 +18,7 @@ class AuthModelImpl() : AuthModel{
         return  retrofit.auth_api.get_token(encoded_phone)
     }
 
-    override fun get_refreshToken(refresh: String): Single<AuthDTO> {
+    override fun get_refreshToken(refresh: String): Single<AccressTokenDTO> {
         return retrofit.auth_api.get_refreshToken(refresh)
     }
 

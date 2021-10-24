@@ -51,9 +51,7 @@ class AuthViewModel(private val model : AuthModel): BaseViewModel() {
                 it.run {
                     //     val temp_token = Gson().fromJson<AuthDTO>(it,AuthDTO::class.java)
                     //_tokenLiveData.postValue(it)
-                    MyApplication.prefs.setString("access", it.access)
-                    Log.v("zzzzzz" , it.access)
-                    MyApplication.prefs.setString("refresh", it.refresh)
+                    _tokenLiveData.postValue(it)
                 }
             }, {
                 Log.d("스토어리스트", "response error, message : ${it.message}")

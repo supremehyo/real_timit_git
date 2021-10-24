@@ -3,6 +3,7 @@ package com.supremehyo.locationsns.View
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.supremehyo.locationsns.Adapter.ContentRecyclerAdapter
+import com.supremehyo.locationsns.Adapter.MyContentRecyclerAdapter
 import com.supremehyo.locationsns.Base.BaseKotlinActivity
 import com.supremehyo.locationsns.DTO.EventDTO
 import com.supremehyo.locationsns.DTO.EventListResultDTO
@@ -39,12 +41,14 @@ class UserProfileActivity : BaseKotlinActivity<ActivityUserProfileBinding, Profi
     var user_id = ""
     var phone_number = ""
     lateinit var eventListResultDTO : EventListResultDTO
-    lateinit var contentListAdapter : ContentRecyclerAdapter
+    lateinit var contentListAdapter : MyContentRecyclerAdapter
 
 
     override fun initStartView() {
-        contentListAdapter  = ContentRecyclerAdapter(this)
+        contentListAdapter  = MyContentRecyclerAdapter(this)
         contentListAdapter.setHasStableIds(true)
+
+
         val LayoutManager = LinearLayoutManager(this)
         val decoration = DividerItemDecoration(this, LinearLayout.VERTICAL) // 리사이클러뷰 구분줄
         user_content_recycler.layoutManager= LayoutManager
@@ -54,6 +58,7 @@ class UserProfileActivity : BaseKotlinActivity<ActivityUserProfileBinding, Profi
         if (intent.hasExtra("user_id") && intent.hasExtra("phone_number")) {
             user_id = intent.getStringExtra("user_id").toString()
             phone_number = intent.getStringExtra("phone_number").toString()
+            Log.v("ssssgsgsg" ,phone_number)
             profile_nickname_tv.text = user_id
         } else {
             Toast.makeText(this, "정보를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -63,17 +68,17 @@ class UserProfileActivity : BaseKotlinActivity<ActivityUserProfileBinding, Profi
     override fun initDataBinding() {
         viewModel.usereventListLiveData.observe(this , Observer {
             eventListResultDTO = it
-            user_content_count_tv.text = it.count.toString() // 총 몇개인지 적용
-            
+            user_content_count_tv.text = "총 "+it.count.toString()+"개" // 총 몇개인지 적용
             var list : ArrayList<EventDTO> = ArrayList<EventDTO>() // 이벤트 내용들 불러오기
             list.addAll(it.results) // list 에 넣어주고 
-            contentListAdapter.setContentList(list) // 어뎁터에 삽입
+            contentListAdapter.contentlist = list
             user_content_recycler.adapter =  contentListAdapter // 어뎁터 연결
             contentListAdapter.notifyDataSetChanged() // 변경사항 알림
         })
 
         viewModel.userDataLiveData.observe(this , Observer {
             Glide.with(this).load(it.profile_photo).error(R.drawable.profile_outline).circleCrop().into(user_profile_iv2)
+            Log.v("ssssgsgsg" , it.age.toString())
             convert_sexAndAge(it.age , it.sex)
             user_address_tv.text = it.location1 +" "+it.location2
             user_profile_des_tv.text = it.intro
@@ -81,17 +86,10 @@ class UserProfileActivity : BaseKotlinActivity<ActivityUserProfileBinding, Profi
     }
 
     override fun initAfterBinding() {
-        if(user_id.isNotBlank() && user_id.isNotEmpty()){
-            viewModel.get_user_writeEvnetList(user_id , 1)
-        }else{
-            Toast.makeText(this, "정보를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
-        }
 
-        if(phone_number.isNotBlank() && phone_number.isNotEmpty()){
-            viewModel.get_userData(phone_number)
-        }else{
-            Toast.makeText(this, "정보를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.get_user_writeEvnetList(phone_number , 1)
+        viewModel.get_userData(phone_number)
+
 
 
     }

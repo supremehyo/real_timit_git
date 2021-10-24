@@ -87,7 +87,7 @@ class HomeFragment :  BaseFragment<FragmentHomeBinding, HomeViewModel>(){
                 home_emptyTv.visibility = View.GONE
                 var list : ArrayList<EventDTO> = ArrayList<EventDTO>()
                 list.addAll(it.results)
-                contentListAdapter.setContentList(list)
+                contentListAdapter.setContentList(list) // 이게 아니라 add 하는 식으로 해야될듯?
                 home_recyclerView.adapter =  contentListAdapter
                 contentListAdapter.notifyDataSetChanged()
                 swipeRefreshLayout.isRefreshing = false
@@ -102,8 +102,7 @@ class HomeFragment :  BaseFragment<FragmentHomeBinding, HomeViewModel>(){
 
         //처음 켜질때 event 글 로딩
         viewModel.getEvnetList("",1)
-        
-        
+
         home_add_bt.setOnClickListener {
             startActivity(Intent(activity, ContentCreateActivity::class.java))
             //findNavController().navigate(R.id.action_homeFragment_to_contentEditActivity)

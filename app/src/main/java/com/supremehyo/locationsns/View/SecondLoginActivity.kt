@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.util.Base64Utils
 import com.supremehyo.locationsns.Base.BaseKotlinActivity
+import com.supremehyo.locationsns.MyApplication
 import com.supremehyo.locationsns.R
 import com.supremehyo.locationsns.R.color.black
 import com.supremehyo.locationsns.R.color.colorPrimary
@@ -63,6 +64,15 @@ class SecondLoginActivity :  BaseKotlinActivity<ActivitySecondLoginBinding, Auth
             }
 
         })
+
+        viewModel.tokenLiveData.observe(this , Observer {
+            MyApplication.prefs.setString("access", it.access)
+            Log.v("zzzzzz" , it.access)
+            MyApplication.prefs.setString("refresh", it.refresh)
+            Log.v("zzzzzz2" , it.refresh)
+            startActivity(Intent(application, MainActivity::class.java))
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+        })
     }
 
     override fun initAfterBinding() {
@@ -87,8 +97,6 @@ class SecondLoginActivity :  BaseKotlinActivity<ActivitySecondLoginBinding, Auth
             if((smsNumber_edit.text.length ==6) && (sms_number.toString() == smsNumber_edit.text.toString())){
                 //이때 토큰 요청해야함
                 viewModel.get_token(origin_phone_number)
-                startActivity(Intent(application, MainActivity::class.java))
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
             }else{
                 Toast.makeText(this, "인증번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }

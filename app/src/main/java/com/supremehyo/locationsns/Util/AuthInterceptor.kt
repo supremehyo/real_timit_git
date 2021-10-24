@@ -22,17 +22,22 @@ class AuthenticationInterceptor() : Interceptor {
 
     val retrofit : RetrofitClass = RetrofitClass
 
-    var authToken = MyApplication.prefs.getString("access","")
-    var refresh_Token = MyApplication.prefs.getString("refresh","")
+
 
     @SuppressLint("CheckResult")
     override fun intercept(chain: Interceptor.Chain): Response {
-        var toto : String = authToken
+
         var newRequest : Request
-        if(toto != null && !toto.equals("")){
+        Log.v("asdddfasfe", "1")
+        var authToken = MyApplication.prefs.getString("access","")
+        var refresh_Token = MyApplication.prefs.getString("refresh","")
+        var toto : String = authToken
+        Log.v("asdddfasfsdse", authToken) // 처음켰을때 여기로 바로 값이 안넘어옴. 이걸 확인해봐야할거 같음
+            Log.v("asdddfasfsdse", refresh_Token)
             newRequest = chain.request().newBuilder().addHeader("Authorization", "Bearer "+toto).build();
             var response = chain.proceed(newRequest)
             if(response.code()==400 || response.code() == 401) {
+                Log.v("asdddfasfe", "3")
                 retrofit.auth_api.get_refreshToken(refresh_Token)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -41,15 +46,15 @@ class AuthenticationInterceptor() : Interceptor {
                             Log.v("asdfasfe", it.access)
                             authToken = it.access
                             MyApplication.prefs.setString("access", authToken)
-                            newRequest = chain.request().newBuilder().addHeader("Authorization", authToken).build();
+                            var newRequest2 = chain.request().newBuilder().addHeader("Authorization", authToken).build();
+                            chain.proceed(newRequest2)
                         }
                     }, {
+                        Log.v("asdddfasfe", "4")
                         Log.d(ContentValues.TAG, "response error, message : ${it.message}")
-                    }).run {
-                       return chain.proceed(newRequest)
-                    }
+                    })
             }
-        }else{ newRequest = chain.request(); }
+
         return chain.proceed(newRequest)
     }
 }

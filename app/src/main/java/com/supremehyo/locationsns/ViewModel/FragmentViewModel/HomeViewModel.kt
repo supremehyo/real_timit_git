@@ -28,7 +28,6 @@ class HomeViewModel(private val model : HomeModel) : BaseViewModel() {
         addDisposable(model.getEventList(search, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-
             .subscribe({
                 it.run {
                     _eventListLiveData.postValue(it)

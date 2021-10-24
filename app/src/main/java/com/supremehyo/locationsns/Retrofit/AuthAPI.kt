@@ -1,5 +1,6 @@
 package com.supremehyo.locationsns.Retrofit
 
+import com.supremehyo.locationsns.DTO.AccressTokenDTO
 import com.supremehyo.locationsns.DTO.AuthDTO
 import io.reactivex.Single
 import okhttp3.Call
@@ -26,7 +27,7 @@ interface AuthAPI {
     @POST("api/token/refresh/") // 인증번호 요청
     fun get_refreshToken(
         @Field("refresh")refresh: String
-    ): Single<AuthDTO>
+    ): Single<AccressTokenDTO>
 
 
 }

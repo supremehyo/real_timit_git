@@ -95,7 +95,7 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
     override fun initDataBinding() {
         viewModel.mapSearchResponseLiveData.observe(this, Observer {
             datas = it.documents
-            Log.v("testlac" , datas.get(0).address_name)
+
             locationSerachRecyclerAdapter.datas = datas
             location_recyclerView.adapter = locationSerachRecyclerAdapter
             locationSerachRecyclerAdapter.notifyDataSetChanged()

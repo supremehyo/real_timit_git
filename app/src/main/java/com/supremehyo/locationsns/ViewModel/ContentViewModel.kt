@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.supremehyo.locationsns.Base.BaseViewModel
 import com.supremehyo.locationsns.DTO.ContentDTO
 import com.supremehyo.locationsns.DTO.EventDTO
+import com.supremehyo.locationsns.DTO.UserDTO
 import com.supremehyo.locationsns.Model.ContentModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -31,8 +32,8 @@ class ContentViewModel(private val model: ContentModel) : BaseViewModel() {
     val eventLiveData: LiveData<EventDTO>
         get() = _eventLiveData
 
-    private  val _NicknameLiveData = MutableLiveData<String>()
-    val NicknameLiveData: LiveData<String>
+    private  val _NicknameLiveData = MutableLiveData<UserDTO>()
+    val NicknameLiveData: LiveData<UserDTO>
         get() = _NicknameLiveData
 
 
@@ -88,7 +89,7 @@ class ContentViewModel(private val model: ContentModel) : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 it.run {
-                    _NicknameLiveData.postValue(it.nickname)
+                    _NicknameLiveData.postValue(it)
                 }
             }, {
 

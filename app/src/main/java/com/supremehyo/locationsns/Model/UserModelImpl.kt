@@ -30,8 +30,7 @@ class UserModelImpl() : UserModel {
     }
 
     override fun get_userData(phone_number: String): Single<UserDTO> {
-        return  retrofit.user_api.get_userData(phone_number)
+        return  retrofit.user_api.get_content_host_nickname(phone_number)
     }
-
 
 }

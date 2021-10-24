@@ -111,12 +111,13 @@ class ContentCreateActivity : BaseKotlinActivity<ActivityContentEditBinding , Co
             val str = start_time
             val intStr = str.replace("[\uAC00-\uD7A3]".toRegex(), "")
             val testString : String = intStr
-            val splitArray = testString.split(".")
+            Log.v("tttt ", testString);
+            val splitArray = testString.split(" ")
 
             val end_str = end_time
             val end_intStr = end_str.replace("[\uAC00-\uD7A3]".toRegex(), "")
             val end_String : String = end_intStr
-            val end_splitArray = end_String.split(".")
+            val end_splitArray = end_String.split(" ")
 
 
             //시작시간 파싱

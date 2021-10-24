@@ -22,8 +22,10 @@ object RetrofitClass {
     // 서버 주소
     private const val BASE_URL = "http://54.180.138.77/"
     var  loggingInterceptor : HttpLoggingInterceptor =  HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    var  authenticationInterceptor : AuthenticationInterceptor =  AuthenticationInterceptor()
 
-    val okHttpClient = OkHttpClient.Builder().addInterceptor(AuthenticationInterceptor()).addInterceptor(loggingInterceptor).build()
+    val okHttpClient = OkHttpClient.Builder().addInterceptor(authenticationInterceptor).addInterceptor(loggingInterceptor).build()
+
 
     // SingleTon
     fun getInstance(): Retrofit {
@@ -46,7 +48,6 @@ object RetrofitClass {
             instance2 = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
