@@ -29,9 +29,7 @@ class UserProfileEditViewModel(private val model: UserProfileEditModel) : BaseVi
                     _editUserDTOLiveData.postValue(it)
                 }
             }, {
-
                 Log.d("스토어리스트", "response error, message : ${it.printStackTrace()}")
             }))
     }
-
 }

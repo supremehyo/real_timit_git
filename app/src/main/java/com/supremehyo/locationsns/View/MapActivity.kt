@@ -46,6 +46,9 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
 
     var address : String = ""
     var place_name : String = ""
+    var latitude : String = ""
+    var longitude : String = ""
+
     lateinit var datas : List<com.supremehyo.locationsns.DTO.Place>
     lateinit var locationSerachRecyclerAdapter: LocationSerachRecyclerAdapter
 
@@ -88,6 +91,8 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
             .subscribe{
                 place_name = it.get(0)
                 address = it.get(1)
+                latitude = it.get(2)
+                longitude = it.get(3)
                 location_editText.setText(place_name)
             }
     }
@@ -119,11 +124,9 @@ class MapActivity : BaseKotlinActivity<ActivityMapBinding, MapViewModel>() , OnM
 
         })*/
 
-
-
         //지도 완료 버튼
         map_complete_tv.setOnClickListener {
-            var tempList = listOf<String>(address, place_name)//상세주소랑 , 장소이름을 보냄
+            var tempList = listOf<String>(address, place_name , latitude ,longitude)//상세주소랑 , 장소이름을 보냄
             RxEventBusHelper.return_Map_address(tempList)
             finish()
         }

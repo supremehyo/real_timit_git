@@ -27,9 +27,9 @@ class ContentModelImpl() : ContentModel{
 
     override fun create_evnet(event_dto: EventDTO) : Single<EventDTO> {
 
-     return  retrofit.evnet_api.create_Event(event_dto.title,event_dto.start_time,event_dto.end_time,event_dto.location
-         ,event_dto.location_name,event_dto.description, event_dto.pre_payment,event_dto.level_pref,event_dto.head,event_dto.head_male,event_dto.head_female,
-         event_dto.age, event_dto.chat_count, event_dto.is_active,event_dto.host)
+        return  retrofit.evnet_api.create_Event(event_dto.title,event_dto.start_time,event_dto.end_time,event_dto.location,
+            event_dto.location_name,event_dto.latitude , event_dto.longitude ,event_dto.description, event_dto.pre_payment,event_dto.level_pref,event_dto.head,event_dto.head_male,event_dto.head_female,
+            event_dto.age, event_dto.chat_count, event_dto.is_active,event_dto.host)
     }
 
     override fun delete_event(id: Int) {

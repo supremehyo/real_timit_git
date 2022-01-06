@@ -62,7 +62,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="4434ad2a2437da71755c0601f325b153" />
+            android:value="f911150097bc8064cf4ff1e3af35e369" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDUA4EFTAc2PC649txocTU3lE4fyU59JGs" />

@@ -22,6 +22,8 @@ interface EventAPI {
         @Field("end_time") end_time: String,
         @Field("location") location: String,
         @Field("location_name") location_name: String,
+        @Field("latitude") latitude :Float,
+        @Field("longitude") longitude :Float,
         @Field("description") description: String?,
         @Field("pre_payment") pre_payment: Int?,
         @Field("level_pref") level_pref: String?,

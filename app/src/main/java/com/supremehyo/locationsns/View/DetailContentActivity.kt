@@ -8,16 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
@@ -31,8 +29,14 @@ import com.supremehyo.locationsns.ViewModel.MainViewModel
 import com.supremehyo.locationsns.databinding.ActivityDetailContentBinding
 import com.supremehyo.locationsns.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_detail_content.*
+import net.daum.mf.map.api.MapPoint
 import org.koin.android.ext.android.inject
 import java.time.LocalDateTime
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapView
+
+
+
 
 //event  에 쓴사람 닉네임 데이터가 없음.
 //글을 쓴사람 호스트의 위치도 필요함
@@ -52,7 +56,27 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
         event = intent.getSerializableExtra("content") as EventDTO
         content_title_tv.setText(event.title)
 
-        
+
+        val mapView = MapView(this)
+        val mapViewContainer = content_map
+
+        // 중심점 변경
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(event.longitude.toDouble(),   event.latitude.toDouble()), true);
+        // 줌 레벨 변경
+        mapView.setZoomLevel(7, true);
+        // 중심점 변경 + 줌 레벨 변경
+        mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(event.longitude.toDouble(),   event.latitude.toDouble()), 9, true);
+        // 줌 인
+        mapView.zoomIn(true);
+        mapViewContainer.addView(mapView)
+        val marker = MapPOIItem()
+        marker.itemName = event.location_name
+        marker.tag = 0
+        marker.mapPoint = MapPoint.mapPointWithGeoCoord(event.latitude.toDouble(), event.longitude.toDouble())
+        marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+        marker.selectedMarkerType =
+            MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        mapView.addPOIItem(marker)
 
         //몇시간전 계산
         val currentDateTime = LocalDateTime.now()
@@ -79,6 +103,7 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
         content_detail_location_sub_tv.text = event.location
 
 
+        /*
         //지도 관련
         Places.initialize(applicationContext, getString(R.string.google_map_token))
         // Create a new PlacesClient instance
@@ -89,6 +114,8 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
         mapFragment.getMapAsync(this)
         //처음에 켜질때 이렇게 하는데 수정으로 갔다가 다시 돌아올때는 서버에 요청해서 새로 값 갱신해야하는게 맞는거 같음.
         // onResume 에다가 처리 할 것
+        */
+
     }
 
     override fun initDataBinding() {
@@ -169,7 +196,7 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
 
         map_connect_iv.setOnClickListener {
             val location: Uri =
-                Uri.parse("geo:0.0?q=${event.location}")
+                Uri.parse("geo:${event.latitude}.${event.longitude}?q=${event.location}")
             // Or map point based on latitude/longitude
             // Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
             // Or map point based on latitude/longitude
@@ -184,31 +211,16 @@ class DetailContentActivity:  BaseKotlinActivity<ActivityDetailContentBinding, C
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        mMap = googleMap
 
-        val SEOUL = LatLng(37.56, 126.97)
-
-        val markerOptions = MarkerOptions()
-        markerOptions.position(SEOUL)
-        markerOptions.title("서울")
-        markerOptions.snippet("한국의 수도")
-        mMap!!.addMarker(markerOptions)
-
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 10F))
     }
 
     fun gomap(latLng: LatLng , name : String , des : String){
-        val SEOUL = latLng
 
-        val markerOptions = MarkerOptions()
-        markerOptions.position(SEOUL)
-        markerOptions.title(name)
-        markerOptions.snippet(des)
-        mMap!!.addMarker(markerOptions)
-
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 10F))
     }
 
 
+    override fun onResume() {
+        super.onResume()
 
+    }
 }

@@ -7,6 +7,13 @@ import kotlinx.serialization.Serializable
 data class EventDTO  (
     @SerializedName("id")
     val id	 : Int? ,
+    /*
+    @SerializedName("host_name")
+    val host_name : String?,
+    @SerializedName("host_loc1")
+    val host_loc1 : String?,
+    @SerializedName("host_loc2")
+    val host_loc2 : String?,*/
     @SerializedName("create_time")
     val create_time : String?,
     @SerializedName("title")
@@ -17,6 +24,10 @@ data class EventDTO  (
     val end_time : String,
     @SerializedName("location")
     val location : String,
+    @SerializedName("latitude")
+    val latitude : Float,
+    @SerializedName("longitude")
+    val longitude : Float,
     @SerializedName("location_name")
     val location_name : String,
     @SerializedName("description")

@@ -134,4 +134,8 @@ class HomeFragment :  BaseFragment<FragmentHomeBinding, HomeViewModel>(){
 
     }
 
+    override fun onResume() {
+        super.onResume()
+      //  viewModel.getEvnetList("",1)
+    }
 }

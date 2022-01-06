@@ -12,11 +12,8 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.supremehyo.locationsns.DTO.ContentDTO
 import com.supremehyo.locationsns.DTO.EventDTO
-import com.supremehyo.locationsns.DTO.Place
 import com.supremehyo.locationsns.R
-import com.supremehyo.locationsns.Util.RxEventBusHelper
 import com.supremehyo.locationsns.Util.TimeCal
 import com.supremehyo.locationsns.View.DetailContentActivity
 import java.time.LocalDateTime
@@ -37,8 +34,8 @@ class MyContentRecyclerAdapter(private val context: Context) : RecyclerView.Adap
         holder.bind(contentlist[position])
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var content_cl : ConstraintLayout = itemView.findViewById(R.id.content_cl)
         var title_tv: TextView = itemView.findViewById(R.id.title_tv)
         var date_tv: TextView = itemView.findViewById(R.id.date_time_tv)
@@ -49,7 +46,6 @@ class MyContentRecyclerAdapter(private val context: Context) : RecyclerView.Adap
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: EventDTO) {
             title_tv.text = item.title
-            Log.v("mymy" , item.title)
             date_tv.text = timecal.convert_date(item.start_time , item.end_time)
             chat_count_tv.text = item.chat_count.toString()
 

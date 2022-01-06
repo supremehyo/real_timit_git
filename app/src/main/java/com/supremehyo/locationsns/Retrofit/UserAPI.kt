@@ -22,7 +22,7 @@ interface UserAPI {
         @Field("sex") sex : String,
         @Field("age") age : Int,
         @Field("location1") location1 : String,
-        @Field("location2") location2 : String?,
+        @Field("location2") location2 : String,
         @Field("notification_pref") notification_pref : Boolean,
         @Field("auto_apply") auto_apply : Boolean,
         @Field("is_active") is_active : Boolean,

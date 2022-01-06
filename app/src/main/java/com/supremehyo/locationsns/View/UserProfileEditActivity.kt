@@ -44,6 +44,7 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
     override fun initDataBinding() {
         viewModel.editUserDTOLiveData.observe(this, Observer {
             userDto = it // 새로운 userdto 로 갱신
+            finish() // 완료되고 나면 뒤로가기
            // Log.v("새로갱신", it.nickname)
         })
     }
@@ -92,15 +93,25 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
             edit_intro = edit_des_et.text.toString()
 
             userDto.nickname = edit_nickname
-            userDto.sex = edit_sex
+            when(edit_sex){
+                "남성" -> userDto.sex= "male"
+                "여성" -> userDto.sex= "female"
+            }
+            Log.v("sdssss" , edit_location)
+            val temparray = edit_location.split(" ")
+            Log.v("sdssss" , temparray.get(0))
+            Log.v("sdssss" , temparray.get(1))
           //  userDto.age = edit_age
-            userDto.location1 = edit_location
+            userDto.location1 = temparray.get(0)
+            userDto.location2 = temparray.get(1)
             userDto.intro = edit_intro
 
             Log.v("asdfasf" , "${userDto.phone},${userDto.last_login} , ${userDto.nickname}, ${userDto.intro}, ${userDto.sex}, ${userDto.age}, " +
                     "${userDto.location1},${userDto.location2} ,${userDto.notification_pref} , ${userDto.auto_apply}, ${userDto.is_active},${userDto.is_admin}")
 
             viewModel.editProfile(userDto)
+
+            
         }
     }
 
@@ -132,7 +143,14 @@ class UserProfileEditActivity : BaseKotlinActivity<ActivityUserProfileEditBindin
         super.onActivityResult(requestCode, resultCode, data)
         val sendText: String = data?.extras?.getString("data").toString()
         //여기서 주소 파싱해야함.
-        edit_address_et.setText(sendText)
+        //젤에 우편 번호를 먼저 떼어냄
+        val array = sendText.split("," , " ")
+        for( i  in array){
+
+        }
+        Log.v("파싱테스트" ,array.get(2))
+        Log.v("파싱테스트" ,array.get(3))
+        edit_address_et.setText(array.get(2)+" "+array.get(3))
 
     }
 }

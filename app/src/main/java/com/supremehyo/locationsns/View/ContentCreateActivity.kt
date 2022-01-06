@@ -39,6 +39,8 @@ class ContentCreateActivity : BaseKotlinActivity<ActivityContentEditBinding , Co
     var location_name = ""
     var start_time = ""
     var end_time = ""
+    var latitude : Float = 0f
+    var longitude : Float = 0f
     var description = ""
     var premoney = ""
     var head_male = 0
@@ -56,13 +58,14 @@ class ContentCreateActivity : BaseKotlinActivity<ActivityContentEditBinding , Co
             .subscribe{
                 location = it.get(0)
                 location_name = it.get(1)
+                latitude = it.get(2).toFloat()
+                longitude = it.get(3).toFloat()
                 location_et.setText(location+" "+location_name)
             }
 
         RxEventBusHelper.timeSubject
             .subscribe {
                 start_time = it.get(0)
-
                 end_time = it.get(1)
                 time_et.setText(it.get(0)+"\n"+it.get(1))
             }
@@ -82,6 +85,7 @@ class ContentCreateActivity : BaseKotlinActivity<ActivityContentEditBinding , Co
 
         viewModel.eventLiveData.observe(this, Observer {
             Log.v("이벤트작성리스폰스", it.host+" "+it.title)
+            finish();
         })
     }
 
@@ -177,11 +181,11 @@ class ContentCreateActivity : BaseKotlinActivity<ActivityContentEditBinding , Co
             format_end += ":00"
 
             val dateAndtime: LocalDateTime = LocalDateTime.now() //작성시간
-            var eventDTO : EventDTO = EventDTO(1, dateAndtime.toString() ,title_et.text.toString() ,format_start,format_end,location,location_name,des_et.text.toString(), premoney_et.text.toString().toInt(),
+            var eventDTO : EventDTO = EventDTO(1, dateAndtime.toString() ,title_et.text.toString() ,format_start,format_end,location, latitude , longitude ,location_name,des_et.text.toString(), premoney_et.text.toString().toInt(),
             "" , head ,head_male,head_female,"10",0, true,userDto.phone)
             viewModel.create_event(eventDTO)
 
-            finish();
+
         }
     }
 

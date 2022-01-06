@@ -69,6 +69,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>(
             Glide.with(requireContext()).load(it.profile_photo).error(R.drawable.profile_outline).circleCrop().into(user_profile_iv)
             convert_sexAndAge(it.age , it.sex)
             user_address_tv.text = it.location1 +" "+it.location2
+            Log.v("sdfsdf", it.location2)
             if(it.intro == null){
                 user_profile_des_tv.text = "자기소개가 없습니다."
             }else{
@@ -82,7 +83,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>(
             user_content_count_tv.text = it.count.toString() // 총 몇개인지 적용
             var list : ArrayList<EventDTO> = ArrayList<EventDTO>() // 이벤트 내용들 불러오기
             list.addAll(it.results) // list 에 넣어주고
-            Log.v("sdfsdvs ", list.get(0).title)
             contentListAdapter.contentlist = list
             user_content_recycler.adapter = contentListAdapter
             contentListAdapter.notifyDataSetChanged()
@@ -120,8 +120,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>(
 
         if(sex != null){
             when(sex){
-                "여성" -> temp_sex = "여"
-                "남성" -> temp_sex ="남"
+                "female" -> temp_sex = "여"
+                "male" -> temp_sex ="남"
                 else ->  temp_sex = ""
             }
         }
@@ -129,11 +129,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding , ProfileViewModel>(
     }
 
 
-    private fun newInstant() : ProfileFragment
-    {
-        val args = Bundle()
-        val frag = ProfileFragment()
-        frag.arguments = args
-        return frag
+    override fun onResume() {
+        super.onResume()
+        viewModel.getMyProfile() //다시 화면으로 왔을때 리프레시 되도록
     }
+
 }

@@ -13,6 +13,6 @@ class UserProfileEditModelImpl() : UserProfileEditModel {
 
     override fun editMyProfile(userDTO: UserDTO): Single<UserDTO> {
       return  retrofit.user_api.editMyProfile( userDTO.phone,"" , userDTO.nickname, userDTO.intro, userDTO.sex, userDTO.age,
-            userDTO.location1,"" , userDTO.notification_pref , userDTO.auto_apply, userDTO.is_active,userDTO.is_admin)
+            userDTO.location1,userDTO.location2 , userDTO.notification_pref , userDTO.auto_apply, userDTO.is_active,userDTO.is_admin)
     }
 }

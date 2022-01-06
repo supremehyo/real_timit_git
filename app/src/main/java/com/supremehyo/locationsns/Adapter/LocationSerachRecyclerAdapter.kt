@@ -37,7 +37,7 @@ class LocationSerachRecyclerAdapter (private val context: Context) : RecyclerVie
             location_name_tv.text = item.place_name
             location_detail_tv.text = item.address_name
             location_search_cl.setOnClickListener {
-                var temp = listOf<String>(item.place_name ,item.address_name)
+                var temp = listOf<String>(item.place_name ,item.address_name , item.x , item.y)
                 RxEventBusHelper.select_Map_address(temp)
             }
 

@@ -38,6 +38,7 @@ class AuthenticationInterceptor() : Interceptor {
             var response = chain.proceed(newRequest)
             if(response.code()==400 || response.code() == 401) {
                 Log.v("asdddfasfe", "3")
+                /*
                 retrofit.auth_api.get_refreshToken(refresh_Token)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -52,7 +53,7 @@ class AuthenticationInterceptor() : Interceptor {
                     }, {
                         Log.v("asdddfasfe", "4")
                         Log.d(ContentValues.TAG, "response error, message : ${it.message}")
-                    })
+                    })*/
             }
 
         return chain.proceed(newRequest)
