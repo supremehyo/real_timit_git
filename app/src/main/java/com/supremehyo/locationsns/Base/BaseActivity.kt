@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 
 abstract class BaseKotlinActivity<T : ViewDataBinding, R : BaseViewModel> : AppCompatActivity() {
 
-    lateinit var viewDataBinding: T
+    lateinit var viewDataBinding:  T
 
     /**
      * setContentView로 호출할 Layout의 리소스 Id.
